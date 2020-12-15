@@ -76,7 +76,7 @@ et le test (Training and Test set
 a = df1.drop('ID_NOM',axis=1)
 x = a['Niv_Etude_Bac'].values.reshape(-1, 1)
 y = a['Solvable'].values.reshape(-1, 1)
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=0)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.8, random_state=3)
 print(x_test)
 '''
 mise à l’échelle des features (StandardScaler).
@@ -113,6 +113,8 @@ plt.plot(x_Montant_Temps,y_Montant_Temps)
 '''
  Rajoutez du style à vos graphiques
 '''
+plt.plot(x_Montant_Temps,y_Montant_Temps)
+plt.show()
 
 
 '''
@@ -136,7 +138,40 @@ print(df5.mean())
 calcul de la mediane
 '''
 print(df5.median())
-
+'''
+calcul du mod
+'''
+print(df5.mod())
 
 df5["Age"].value_counts(normalize=True).plot(kind='bar')
 plt.show()
+'''
+Corrélation
+'''
+df6= pandas.read_csv('iris.csv')
+print(df6)
+
+f = df6.corr()
+print(f)
+
+'''
+analyse graphique
+'''
+x_longueur_sepal = df6.longueur_setal
+y_largeur_sepal = df6.largeur_sepal 
+plt.xlabel('longueur_petal')
+plt.ylabel('largeur_petal')
+plt.scatter(x_longueur_petal,y_largeur_petal)
+'''
+autre choix
+'''
+x_longueur_petal = df6.longueur_petal
+y_largeur_petal = df6.largeur_petal
+plt.xlabel('longueur_petal')
+plt.ylabel('largeur_petal')
+plt.scatter(x_longueur_petal,y_largeur_petal)
+
+import seaborn as sb
+
+sb.lmplot(x="longueur_petal", y="largeur_petal", data=df6, fit_reg=True, hue='espèce')
+
